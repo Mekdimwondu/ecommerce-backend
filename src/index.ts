@@ -4,6 +4,7 @@ import rootRouter from "./routes";
 import { PrismaClient } from "@prisma/client";
 import { errorMiddleware } from "./middlewares/errors";
 import { SignUpSchema } from "./schema/users";
+import productsRoutes from "./routes/products";
 
 const app = express();
 app.use(express.json());
