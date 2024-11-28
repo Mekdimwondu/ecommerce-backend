@@ -15,5 +15,5 @@ export const prismaClient = new PrismaClient({
 });
 app.use(errorMiddleware);
 app.listen(PORT, () => {
-  console.log("express run in localhost:5000");
+  console.log(`express run in localhost:${PORT}`);
 });

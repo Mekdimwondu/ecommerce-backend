@@ -25,9 +25,27 @@ model User {
   email String @unique
   password String
   role Role @default(USER)
+  defaultShippingAddress Int?
+  defaultBillingAdress Int?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+ adresses Address[]
+ cart_items CartItem[]
   @@map("users")
+}
+model Address{
+  id Int @id @default(autoincrement())
+  lineOne String
+  lineTwo String
+  city String
+  country String 
+  pincode String
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("addresses")
 }
 model Product {
   id Int @id @default(autoincrement())
@@ -37,5 +55,18 @@ model Product {
   tags String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  cart_items CartItem[] 
   @@map("products")
+}
+
+model CartItem {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId],references: [id])
+  productId Int
+  product Product @relation(fields: [productId],references: [id])
+  quantity Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+@@map("cart_items")
 }

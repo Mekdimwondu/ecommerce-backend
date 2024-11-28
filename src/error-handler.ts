@@ -12,11 +12,19 @@ export const errorHandler = (method: Function) => {
       if (error instanceof HttpException) {
         exception = error;
       } else {
-        exception = new IntenalException(
-          "something went wrong!",
-          error,
-          ErrorCode.INTERNAL_EXCEPTION
-        );
+        if (error instanceof ZodError) {
+          exception = new BadRequestsException(
+            "Unprocessabel Entity",
+            ErrorCode.UNPROCESSABEL_ENTITY,
+            error
+          );
+        } else {
+          exception = new IntenalException(
+            "something went wrong!",
+            error,
+            ErrorCode.INTERNAL_EXCEPTION
+          );
+        }
       }
       next(exception);
     }
