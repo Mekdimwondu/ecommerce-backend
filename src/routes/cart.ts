@@ -5,14 +5,14 @@ import {
   addItemToCart,
   changeQuantity,
   getCart,
-  removeToCart,
+  removeItemToCart,
 } from "../controllers/cart";
 
 const cartRoutes: Router = Router();
 
 cartRoutes.post("/", authMiddlewere, errorHandler(addItemToCart));
 cartRoutes.get("/", authMiddlewere, errorHandler(getCart));
-cartRoutes.delete("/:id", authMiddlewere, errorHandler(removeToCart));
+cartRoutes.delete("/:id", authMiddlewere, errorHandler(removeItemToCart));
 cartRoutes.put("/:id", authMiddlewere, errorHandler(changeQuantity));
 
 export default cartRoutes;
