@@ -35,5 +35,6 @@ orderRoutes.put(
   adminMiddleware,
   errorHandler(changeStatus)
 );
+
 orderRoutes.get("/:id", authMiddlewere, errorHandler(getOrderbyId));
 export default orderRoutes;

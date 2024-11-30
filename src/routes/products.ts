@@ -5,6 +5,7 @@ import {
   deleteProduct,
   getProductById,
   listProduct,
+  searchProducts,
   updateProduct,
 } from "../controllers/products";
 import authMiddlewere from "../middlewares/auth";
@@ -34,6 +35,7 @@ productsRoutes.get(
   adminMiddleware,
   errorHandler(listProduct)
 );
+productsRoutes.get("/search", authMiddlewere, errorHandler(searchProducts));
 productsRoutes.get(
   "/:id",
   authMiddlewere,
